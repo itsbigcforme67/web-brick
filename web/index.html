@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no">
+  <meta name="theme-color" content="#16181d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Brick games">
+  <title>Web Brick</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- ============ LIBRARY ============ -->
+  <section id="library" class="view active">
+    <header class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <div>
+          <h1>Brick games</h1>
+          <p id="lib-status" class="muted">Starting…</p>
+        </div>
+      </div>
+      <button id="btn-menu" class="icon-btn" aria-label="Settings">⋯</button>
+    </header>
+
+    <div id="rom-banner" class="banner hidden">
+      <div><strong>No game ROMs are included.</strong> <span id="rom-banner-text"></span></div>
+      <div class="banner-row">
+        <button id="btn-fetch" class="btn primary small">Download from BrickEmuPy</button>
+        <label class="btn small">Import files…<input id="import-input" type="file" multiple hidden></label>
+      </div>
+    </div>
+
+    <main id="lib-content">
+      <h2 class="section-title">Handhelds</h2>
+      <div id="game-grid" class="game-grid"></div>
+    </main>
+    <input id="role-input" type="file" hidden>
+  </section>
+
+  <!-- ============ PLAYER ============ -->
+  <section id="player" class="view">
+    <header class="player-bar">
+      <button id="btn-back" class="icon-btn" aria-label="Back to library">‹</button>
+      <div class="player-title">
+        <span id="game-title">—</span>
+        <span id="game-sub" class="muted"></span>
+      </div>
+      <button id="btn-sound" class="icon-btn" aria-label="Sound">🔈</button>
+      <button id="btn-pmenu" class="icon-btn" aria-label="Options">⋯</button>
+    </header>
+    <div id="stage" class="stage" aria-label="Handheld"></div>
+  </section>
+
+  <!-- ============ SHEETS / DIALOGS ============ -->
+  <div id="sheet" class="sheet hidden" role="dialog" aria-modal="true">
+    <div class="sheet-panel">
+      <h3 id="sheet-title"></h3>
+      <div id="sheet-body"></div>
+      <div id="sheet-actions" class="sheet-actions"></div>
+    </div>
+  </div>
+  <div id="toast" class="toast hidden"></div>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+# Never publish copyrighted files: the chips' ROM dumps stay out of the repository.
+*.bin
+*.srom
+*.rom
+*.zip
+roms/
+
+# build output, editor files, local clutter
+tests/host_trace
+tests/embed_example
+.pio/
+.vscode/
+__pycache__/
+*.pyc
+shots/
+*.wav
+.DS_Store

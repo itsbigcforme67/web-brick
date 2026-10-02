@@ -1,0 +1,379 @@
+{
+ "source": "https://github.com/azya52/BrickEmuPy",
+ "commit": "4ba6081ee5a7327da88d8c031d42cd68aedf9c9d",
+ "romBase": "https://raw.githubusercontent.com/azya52/BrickEmuPy/4ba6081ee5a7327da88d8c031d42cd68aedf9c9d/assets/",
+ "devices": [
+  {
+   "id": "E23PlusMarkII96in1",
+   "name": "Brick Game E-23 Plus Mark II",
+   "kind": "Brick game",
+   "detail": "96 in 1 \u00b7 HT-943D0",
+   "core": "HT943",
+   "brick": "E23PlusMarkII96in1.json",
+   "face": "E23PlusMarkII96in1.svg",
+   "thumb": "E23PlusMarkII96in1.webp",
+   "size": [
+    365,
+    859
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "E23PlusMarkII96in1.bin",
+     "size": 4096,
+     "sha1": "a36213309e6add31f31e4248f02f17de9914a5c1",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "E23PlusMarkII96in1.srom",
+     "size": 640,
+     "sha1": "f039359e8e1d1bf75581a4c852b263c8c140e072",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnRotate",
+    "a": "btnRotate",
+    "start": "btnStart",
+    "select": "btnMute"
+   }
+  },
+  {
+   "id": "E88_8in1",
+   "name": "Brick Game E-88",
+   "kind": "Brick game",
+   "detail": "8 in 1 \u00b7 HT-943E5",
+   "core": "HT943",
+   "brick": "E88_8in1.json",
+   "face": "E88_8in1.svg",
+   "thumb": "E88_8in1.webp",
+   "size": [
+    365,
+    859
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "E88_8in1.bin",
+     "size": 4096,
+     "sha1": "58a8370dd9e51829c7eb90c70e1e21c2a19ad8ea",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "E23PlusMarkII96in1.srom",
+     "size": 640,
+     "sha1": "f039359e8e1d1bf75581a4c852b263c8c140e072",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnRotate",
+    "a": "btnRotate",
+    "start": "btnStart",
+    "select": "btnMute"
+   }
+  },
+  {
+   "id": "GA888",
+   "name": "Block Game & Echo Key GA888",
+   "kind": "Keychain game",
+   "detail": "Falling blocks \u00b7 HT-943I0",
+   "core": "HT943",
+   "brick": "GA888.json",
+   "face": "GA888.svg",
+   "thumb": "GA888.webp",
+   "size": [
+    4005,
+    2185
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "GA888.bin",
+     "size": 4096,
+     "sha1": "00b08773e8ee7577377f4d52cd1e6bb657b6f242",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "GA888.srom",
+     "size": 640,
+     "sha1": "f6c24fc9622bff73ab09b5ee77eb338f27f7a6b1",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnRotate",
+    "a": "btnRotate",
+    "start": "btnPause",
+    "select": "btnReset"
+   }
+  },
+  {
+   "id": "Keychain55in1",
+   "name": "Keychain 55 in 1",
+   "kind": "Keychain game",
+   "detail": "HT-943I0",
+   "core": "HT943",
+   "brick": "Keychain55in1.json",
+   "face": "Keychain55in1.svg",
+   "thumb": "Keychain55in1.webp",
+   "size": [
+    1838,
+    2739
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "Keychain55in1.bin",
+     "size": 4096,
+     "sha1": "27fe405a8a866bfc6a857af886ed00f64083c2cc",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "Keychain55in1.srom",
+     "size": 640,
+     "sha1": "4aee372f87a988ae46790538f4435c4a249e3686",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnStartRotate",
+    "a": "btnStartRotate",
+    "start": "btnOnPause",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "KeychainPinBall",
+   "name": "Keychain Pin Ball",
+   "kind": "Keychain game",
+   "detail": "HT-943I0",
+   "core": "HT943",
+   "brick": "KeychainPinBall.json",
+   "face": "KeychainPinBall.svg",
+   "thumb": "KeychainPinBall.webp",
+   "size": [
+    2560,
+    3610
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "KeychainPinBall.bin",
+     "size": 4096,
+     "sha1": "1317b038156eb65d61f10547deef3edf5ce3f8a8",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "KeychainPinBall.srom",
+     "size": 640,
+     "sha1": "133d2bf0a957c9b6c3119d28e379efb19c5d8e8b",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnStartOn",
+    "start": "btnPause",
+    "select": "btnMute"
+   }
+  },
+  {
+   "id": "Puyolin",
+   "name": "Puyolin",
+   "kind": "Keychain game",
+   "detail": "1997 \u00b7 HT-943Q0",
+   "core": "HT943",
+   "brick": "Puyolin.json",
+   "face": "Puyolin.svg",
+   "thumb": "Puyolin.webp",
+   "size": [
+    9850,
+    7647
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "Puyolin.bin",
+     "size": 4096,
+     "sha1": "016aa77a159b710e58f32fda565301ce943aea87",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "Puyolin.srom",
+     "size": 640,
+     "sha1": "8c9c95130c39fa1a8eb7baf3393be9b84e46b7de",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "a": "btnStart",
+    "start": "btnPause",
+    "select": "btnMute"
+   }
+  },
+  {
+   "id": "SpaceIntruderTK150I",
+   "name": "Space Intruder TK-150I",
+   "kind": "LCD game",
+   "detail": "HTB943R0",
+   "core": "HT943",
+   "brick": "SpaceIntruderTK150I.json",
+   "face": "SpaceIntruderTK150I.svg",
+   "thumb": "SpaceIntruderTK150I.webp",
+   "size": [
+    3032,
+    4002
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "SpaceIntruderTK150I.bin",
+     "size": 4096,
+     "sha1": "cd1573049c093788bb6bd01d4cec1695e0d0f187",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "SpaceIntruderTK150I.srom",
+     "size": 640,
+     "sha1": "6d1823b2dd557a79da3cee431e1e542a85772080",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnFire",
+    "a": "btnFire",
+    "start": "btnPause",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "MameGalaxian",
+   "name": "Mame Galaxian",
+   "kind": "Keychain game",
+   "detail": "HTB943R0",
+   "core": "HT943",
+   "brick": "MameGalaxian.json",
+   "face": "MameGalaxian.svg",
+   "thumb": "MameGalaxian.webp",
+   "size": [
+    1746,
+    2162
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "MameGalaxian.bin"
+    },
+    {
+     "role": "srom",
+     "file": "MameGalaxian.srom"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnLife",
+    "up": "btnContinue",
+    "a": "btnStartShoot",
+    "start": "btnPause",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "MameTamagotch",
+   "name": "Mame Game Tamagotch",
+   "kind": "Keychain game",
+   "detail": "HTGL43Q0",
+   "core": "HT943",
+   "brick": "MameTamagotch.json",
+   "face": "MameTamagotch.svg",
+   "thumb": "MameTamagotch.webp",
+   "size": [
+    1746,
+    2177
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "MameTamagotch.bin"
+    },
+    {
+     "role": "srom",
+     "file": "MameTamagotch.srom"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnStartRotate",
+    "a": "btnStartRotate",
+    "start": "btnPause",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "MickeyVGS",
+   "name": "Mickey Deluxe Virtual Game",
+   "kind": "Virtual pet",
+   "detail": "HTGT43N0",
+   "core": "HTG12N0",
+   "brick": "MickeyVGS.json",
+   "face": "MickeyVGS.svg",
+   "thumb": "MickeyVGS.webp",
+   "size": [
+    3380,
+    2774
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "MickeyVGS.bin",
+     "size": 16384,
+     "sha1": "debb9fda6696a4a366f688ad2f638af846fcbb37",
+     "upstream": true
+    },
+    {
+     "role": "srom",
+     "file": "MickeyVGS.srom",
+     "size": 640,
+     "sha1": "2294065a749d1ad586ac717a8fd0619f02214bea",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnEarLeft",
+    "right": "btnEarRight",
+    "a": "btnLeft",
+    "b": "btnRight"
+   }
+  }
+ ]
+}

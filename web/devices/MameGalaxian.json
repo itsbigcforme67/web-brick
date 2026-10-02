@@ -1,0 +1,176 @@
+{
+ "id": "411c02c4-7e9c-49d9-9ac2-f9012b51e91d",
+ "core": "HT943",
+ "face_path": "MameGalaxian.svg",
+ "clock": 700000,
+ "buttons": {
+  "btnPause": {
+   "hot_keys": [
+    49,
+    80
+   ]
+  },
+  "btnSound": {
+   "hot_keys": [
+    50,
+    77
+   ]
+  },
+  "btnOnReset": {
+   "hot_keys": [
+    51,
+    82
+   ]
+  },
+  "btnLeft": {
+   "hot_keys": [
+    65,
+    16777234
+   ]
+  },
+  "btnRight": {
+   "hot_keys": [
+    68,
+    16777236
+   ]
+  },
+  "btnLife": {
+   "hot_keys": [
+    83,
+    16777237
+   ]
+  },
+  "btnContinue": {
+   "hot_keys": [
+    87,
+    16777235
+   ]
+  },
+  "btnStartShoot": {
+   "hot_keys": [
+    32,
+    16777220
+   ]
+  }
+ },
+ "display": {
+  "motion_blur": 0.6,
+  "ghost_segments": 0,
+  "shadow": 7
+ },
+ "peripherals": {
+  "direct_input": {
+   "btnPause": {
+    "port": "PS",
+    "mask": 1,
+    "level": 0
+   },
+   "btnSound": {
+    "port": "PS",
+    "mask": 2,
+    "level": 0
+   },
+   "btnOnReset": {
+    "port": "RES",
+    "mask": 0,
+    "level": 0
+   },
+   "btnLeft": {
+    "port": "PP",
+    "mask": 1,
+    "level": 0
+   },
+   "btnRight": {
+    "port": "PP",
+    "mask": 0,
+    "level": 0
+   },
+   "btnLife": {
+    "port": "PP",
+    "mask": 2,
+    "level": 0
+   },
+   "btnContinue": {
+    "port": "PP",
+    "mask": 2,
+    "level": 0
+   },
+   "btnStartShoot": {
+    "port": "PS",
+    "mask": 0,
+    "level": 0
+   }
+  }
+ },
+ "mask_options": {
+  "rom_path": "MameGalaxian.bin",
+  "sound_rom_path": "MameGalaxian.srom",
+  "port_pullup": {
+   "PP": 15,
+   "PM": 15,
+   "PS": 15
+  },
+  "port_wakeup": {
+   "PP": 0,
+   "PM": 0,
+   "PS": 0
+  },
+  "PA_open_drain": 0,
+  "timer_clock_div": 256,
+  "sound_freq_div": 32,
+  "sound_speed_div": [
+   53,
+   83,
+   7,
+   92,
+   22,
+   123,
+   13,
+   36,
+   99,
+   112,
+   22,
+   85,
+   61,
+   20,
+   84,
+   84
+  ],
+  "sound_effect": [
+   7,
+   0,
+   0,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0,
+   0
+  ],
+  "sound_unknown": [
+   3,
+   0,
+   62,
+   0,
+   0,
+   0,
+   1,
+   0,
+   0,
+   0,
+   0,
+   0,
+   105,
+   0,
+   0,
+   0
+  ]
+ }
+}
