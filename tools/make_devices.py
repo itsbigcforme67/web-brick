@@ -48,8 +48,10 @@ INFO = {
     'DigimonV4J': ('Digital Monster Ver. 4', 'Virtual pet', 'Bandai · Japanese'),
     'AlienFever': ('Alien Fever', 'LCD game', 'E0C6200'),
     'RadioShackStackChallenge': ('Stack Challenge', 'LCD game', 'Radio Shack · E0C6200'),
-    'nikko': ('Nikko', 'LCD game', 'E0C6200'),
+    'nikko': ('Nikko', 'Virtual pet', 'E0C6200'),
 }
+# library filter: these are pets, everything else is an arcade game
+PETS = {d for d in INFO if d.startswith(('Tamagotchi', 'Digimon'))} | {'nikko', 'MickeyVGS'}
 ORDER = list(INFO)
 
 # gamepad: which of the device's buttons each pad control presses (first name that exists wins)
@@ -90,7 +92,7 @@ def main():
     assets = os.path.join(a.brickemu, 'assets')
     found = sorted(f[:-6] for f in os.listdir(assets) if f.endswith('.brick'))
     devices = []
-    for dev in sorted(found, key=lambda d: (ORDER.index(d) if d in ORDER else 999, d)):
+    for dev in sorted(found, key=lambda d: (d in PETS, ORDER.index(d) if d in ORDER else 999, d)):   # arcade games first, then pets
         cfg = brickcfg.load(a.brickemu, dev)
         if cfg['core'] not in SUPPORTED_CORES: continue
         face_src = brickcfg.resolve(a.brickemu, cfg['face_path'])
@@ -114,7 +116,7 @@ def main():
         m = re.search(r'viewBox="([\d.\- ]+)"', svg)
         vb = [float(x) for x in m.group(1).split()] if m else [0, 0, 100, 100]
         name, kind, detail = INFO.get(dev, (dev, 'LCD game', cfg['core']))
-        devices.append({'id': dev, 'name': name, 'kind': kind, 'detail': detail, 'core': cfg['core'],
+        devices.append({'id': dev, 'name': name, 'kind': kind, 'group': 'pet' if dev in PETS else 'arcade', 'detail': detail, 'core': cfg['core'],
                         'brick': dev + '.json', 'face': dev + '.svg', 'thumb': dev + '.webp',
                         'size': [round(vb[2]), round(vb[3])], 'roms': roms, 'pad': pad_for(dev, list(cfg['buttons']))})
         print('%-22s %-8s %s' % (dev, cfg['core'], 'ROM upstream' if all(r.get('upstream') for r in roms) else 'bring your own ROM'))
