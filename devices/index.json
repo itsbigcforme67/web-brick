@@ -7,6 +7,7 @@
    "id": "E23PlusMarkII96in1",
    "name": "Brick Game E-23 Plus Mark II",
    "kind": "Brick game",
+   "group": "arcade",
    "detail": "96 in 1 \u00b7 HT-943D0",
    "core": "HT943",
    "brick": "E23PlusMarkII96in1.json",
@@ -47,6 +48,7 @@
    "id": "E88_8in1",
    "name": "Brick Game E-88",
    "kind": "Brick game",
+   "group": "arcade",
    "detail": "8 in 1 \u00b7 HT-943E5",
    "core": "HT943",
    "brick": "E88_8in1.json",
@@ -87,6 +89,7 @@
    "id": "GA888",
    "name": "Block Game & Echo Key GA888",
    "kind": "Keychain game",
+   "group": "arcade",
    "detail": "Falling blocks \u00b7 HT-943I0",
    "core": "HT943",
    "brick": "GA888.json",
@@ -127,6 +130,7 @@
    "id": "Keychain55in1",
    "name": "Keychain 55 in 1",
    "kind": "Keychain game",
+   "group": "arcade",
    "detail": "HT-943I0",
    "core": "HT943",
    "brick": "Keychain55in1.json",
@@ -167,6 +171,7 @@
    "id": "KeychainPinBall",
    "name": "Keychain Pin Ball",
    "kind": "Keychain game",
+   "group": "arcade",
    "detail": "HT-943I0",
    "core": "HT943",
    "brick": "KeychainPinBall.json",
@@ -205,6 +210,7 @@
    "id": "Puyolin",
    "name": "Puyolin",
    "kind": "Keychain game",
+   "group": "arcade",
    "detail": "1997 \u00b7 HT-943Q0",
    "core": "HT943",
    "brick": "Puyolin.json",
@@ -243,6 +249,7 @@
    "id": "SpaceIntruderTK150I",
    "name": "Space Intruder TK-150I",
    "kind": "LCD game",
+   "group": "arcade",
    "detail": "HTB943R0",
    "core": "HT943",
    "brick": "SpaceIntruderTK150I.json",
@@ -283,6 +290,7 @@
    "id": "MameGalaxian",
    "name": "Mame Galaxian",
    "kind": "Keychain game",
+   "group": "arcade",
    "detail": "HTB943R0",
    "core": "HT943",
    "brick": "MameGalaxian.json",
@@ -317,6 +325,7 @@
    "id": "MameTamagotch",
    "name": "Mame Game Tamagotch",
    "kind": "Keychain game",
+   "group": "arcade",
    "detail": "HTGL43Q0",
    "core": "HT943",
    "brick": "MameTamagotch.json",
@@ -348,9 +357,72 @@
    }
   },
   {
+   "id": "AlienFever",
+   "name": "Alien Fever",
+   "kind": "LCD game",
+   "group": "arcade",
+   "detail": "E0C6200",
+   "core": "E0C6200",
+   "brick": "AlienFever.json",
+   "face": "AlienFever.svg",
+   "thumb": "AlienFever.webp",
+   "size": [
+    1842,
+    2411
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "AlienFever.bin",
+     "size": 12288,
+     "sha1": "7927e198f8989861ba057150e59d1f4ad403c1d2",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "a": "btnHandle",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "RadioShackStackChallenge",
+   "name": "Stack Challenge",
+   "kind": "LCD game",
+   "group": "arcade",
+   "detail": "Radio Shack \u00b7 E0C6200",
+   "core": "E0C6200",
+   "brick": "RadioShackStackChallenge.json",
+   "face": "RadioShackStackChallenge.svg",
+   "thumb": "RadioShackStackChallenge.webp",
+   "size": [
+    4282,
+    8406
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "RadioShackStackChallenge.bin",
+     "size": 12288,
+     "sha1": "52b80d70aa7fc3b6323799403b3aba0e3d957f3b",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnRotate",
+    "a": "btnRotate",
+    "b": "btnRight",
+    "start": "btnPause",
+    "select": "btnSound"
+   }
+  },
+  {
    "id": "MickeyVGS",
    "name": "Mickey Deluxe Virtual Game",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "HTGT43N0",
    "core": "HTG12N0",
    "brick": "MickeyVGS.json",
@@ -387,6 +459,7 @@
    "id": "TamagotchiP1",
    "name": "Tamagotchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 first generation (P1)",
    "core": "E0C6200",
    "brick": "TamagotchiP1.json",
@@ -413,6 +486,7 @@
    "id": "TamagotchiP1J",
    "name": "Tamagotchi (Japan)",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 first generation, Japanese",
    "core": "E0C6200",
    "brick": "TamagotchiP1J.json",
@@ -439,6 +513,7 @@
    "id": "TamagotchiP2",
    "name": "Tamagotchi P2",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 second generation",
    "core": "E0C6200",
    "brick": "TamagotchiP2.json",
@@ -465,6 +540,7 @@
    "id": "TamagotchiAngel",
    "name": "Angel Tamagotchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Tenshitchi no Tamagotchi",
    "core": "E0C6200",
    "brick": "TamagotchiAngel.json",
@@ -491,6 +567,7 @@
    "id": "TamagotchiMothra",
    "name": "Mothra Tamagotchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai",
    "core": "E0C6200",
    "brick": "TamagotchiMothra.json",
@@ -517,6 +594,7 @@
    "id": "TamagotchiMorino",
    "name": "Morino Tamagotchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 forest",
    "core": "E0C6200",
    "brick": "TamagotchiMorino.json",
@@ -543,6 +621,7 @@
    "id": "TamagotchiUmino",
    "name": "Umino Tamagotchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 ocean",
    "core": "E0C6200",
    "brick": "TamagotchiUmino.json",
@@ -569,6 +648,7 @@
    "id": "TamagotchiGenjintch",
    "name": "Genjintchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Tamagotchi",
    "core": "E0C6200",
    "brick": "TamagotchiGenjintch.json",
@@ -595,6 +675,7 @@
    "id": "TamagotchiYasashii",
    "name": "Yasashii Tamagotchi",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai",
    "core": "E0C6200",
    "brick": "TamagotchiYasashii.json",
@@ -618,6 +699,7 @@
    "id": "DigimonV1ES",
    "name": "Digimon Ver. 1 (English)",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Digital Monster",
    "core": "E0C6200",
    "brick": "DigimonV1ES.json",
@@ -646,6 +728,7 @@
    "id": "DigimonV1JA",
    "name": "Digital Monster Ver. 1",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Japanese, revision A",
    "core": "E0C6200",
    "brick": "DigimonV1JA.json",
@@ -674,6 +757,7 @@
    "id": "DigimonV1JB",
    "name": "Digital Monster Ver. 1 (rev. B)",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Japanese, revision B",
    "core": "E0C6200",
    "brick": "DigimonV1JB.json",
@@ -702,6 +786,7 @@
    "id": "DigimonV2J",
    "name": "Digital Monster Ver. 2",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Japanese",
    "core": "E0C6200",
    "brick": "DigimonV2J.json",
@@ -730,6 +815,7 @@
    "id": "DigimonV3J",
    "name": "Digital Monster Ver. 3",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Japanese",
    "core": "E0C6200",
    "brick": "DigimonV3J.json",
@@ -758,6 +844,7 @@
    "id": "DigimonV4J",
    "name": "Digital Monster Ver. 4",
    "kind": "Virtual pet",
+   "group": "pet",
    "detail": "Bandai \u00b7 Japanese",
    "core": "E0C6200",
    "brick": "DigimonV4J.json",
@@ -783,69 +870,10 @@
    }
   },
   {
-   "id": "AlienFever",
-   "name": "Alien Fever",
-   "kind": "LCD game",
-   "detail": "E0C6200",
-   "core": "E0C6200",
-   "brick": "AlienFever.json",
-   "face": "AlienFever.svg",
-   "thumb": "AlienFever.webp",
-   "size": [
-    1842,
-    2411
-   ],
-   "roms": [
-    {
-     "role": "rom",
-     "file": "AlienFever.bin",
-     "size": 12288,
-     "sha1": "7927e198f8989861ba057150e59d1f4ad403c1d2",
-     "upstream": true
-    }
-   ],
-   "pad": {
-    "a": "btnHandle",
-    "select": "btnSound"
-   }
-  },
-  {
-   "id": "RadioShackStackChallenge",
-   "name": "Stack Challenge",
-   "kind": "LCD game",
-   "detail": "Radio Shack \u00b7 E0C6200",
-   "core": "E0C6200",
-   "brick": "RadioShackStackChallenge.json",
-   "face": "RadioShackStackChallenge.svg",
-   "thumb": "RadioShackStackChallenge.webp",
-   "size": [
-    4282,
-    8406
-   ],
-   "roms": [
-    {
-     "role": "rom",
-     "file": "RadioShackStackChallenge.bin",
-     "size": 12288,
-     "sha1": "52b80d70aa7fc3b6323799403b3aba0e3d957f3b",
-     "upstream": true
-    }
-   ],
-   "pad": {
-    "left": "btnLeft",
-    "right": "btnRight",
-    "down": "btnDown",
-    "up": "btnRotate",
-    "a": "btnRotate",
-    "b": "btnRight",
-    "start": "btnPause",
-    "select": "btnSound"
-   }
-  },
-  {
    "id": "nikko",
    "name": "Nikko",
-   "kind": "LCD game",
+   "kind": "Virtual pet",
+   "group": "pet",
    "detail": "E0C6200",
    "core": "E0C6200",
    "brick": "nikko.json",

@@ -37,7 +37,14 @@
     </div>
 
     <main id="lib-content">
-      <h2 class="section-title">Handhelds</h2>
+      <div class="lib-head">
+        <h2 class="section-title" id="lib-title">Handhelds</h2>
+        <div class="filter" role="tablist" aria-label="Show">
+          <button role="tab" data-filter="all">All</button>
+          <button role="tab" data-filter="arcade">Arcade</button>
+          <button role="tab" data-filter="pet">Pets</button>
+        </div>
+      </div>
       <div id="game-grid" class="game-grid"></div>
     </main>
     <input id="role-input" type="file" hidden>

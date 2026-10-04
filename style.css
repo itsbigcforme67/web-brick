@@ -73,6 +73,28 @@ main { padding: 8px 16px calc(env(safe-area-inset-bottom) + 32px); max-width: 98
 .tag.good { background: #17352a; color: #7fe0b2; }
 .game .more { position: absolute; top: 6px; right: 6px; width: 30px; height: 30px; border-radius: 8px; border: none; background: rgba(0,0,0,.45); color: #fff; font-size: 16px; cursor: pointer; }
 
+/* ---------- filter: all / arcade / pets ---------- */
+.lib-head { display: flex; align-items: center; justify-content: space-between; gap: 10px; margin: 18px 2px 10px; }
+.lib-head .section-title { margin: 0; }
+.filter { display: inline-flex; background: var(--panel); border: 1px solid var(--line); border-radius: 11px; padding: 3px; gap: 2px; }
+.filter button { border: 0; background: none; color: var(--muted); font: inherit; font-size: 14px; font-weight: 650; padding: 7px 14px; border-radius: 8px; cursor: pointer; }
+.filter button[aria-selected="true"] { background: var(--accent); color: var(--accent-ink); }
+
+/* phones: three across */
+@media (max-width: 600px) {
+  main { padding-left: 10px; padding-right: 10px; }
+  .game-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+  .game { padding: 6px; gap: 5px; border-radius: 11px; }
+  .game .thumb { border-radius: 7px; }
+  .game .thumb img { inset: 5px; width: calc(100% - 10px); height: calc(100% - 10px); }
+  .game .name { font-size: 12px; line-height: 1.2; }
+  .game .meta { font-size: 10.5px; gap: 4px; }
+  .game .meta + .meta { display: none; }                      /* the detail line: no room for it */
+  .tag { font-size: 9.5px; padding: 1px 5px; }
+  .game .more { top: 4px; right: 4px; width: 24px; height: 24px; font-size: 13px; border-radius: 6px; }
+  .filter button { padding: 6px 11px; font-size: 13px; }
+}
+
 /* ---------- player ---------- */
 #player { background: radial-gradient(120% 80% at 50% 0%, #2a2e38 0%, var(--bg) 70%); height: 100dvh; min-height: 0; display: none; flex-direction: column; }
 #player.active { display: flex; }

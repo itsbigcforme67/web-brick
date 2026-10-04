@@ -166,10 +166,15 @@ async function fetchUpstream(only) {
 }
 
 // ------------------------------------------------------------------ library
+const FILTER_TITLE = { all: 'Handhelds', arcade: 'Arcade games', pet: 'Virtual pets' };
 function renderLibrary() {
   const grid = $('#game-grid');
   grid.innerHTML = '';
+  const filter = prefs.get('filter', 'all');
+  for (const b of document.querySelectorAll('.filter button')) b.setAttribute('aria-selected', String(b.dataset.filter === filter));
+  $('#lib-title').textContent = FILTER_TITLE[filter] || FILTER_TITLE.all;
   for (const d of index.devices) {
+    if (filter !== 'all' && (d.group || 'arcade') !== filter) continue;
     const ok = ready(d);
     const card = document.createElement('div');
     card.className = 'game' + (ok ? '' : ' missing');
@@ -246,7 +251,7 @@ const player = { dev: null, brick: null, m: null, raf: 0, last: 0, lcdAcc: 0, se
 
 // ---- time passing while away: virtual pets keep living (hunger, age, the clock) unless switched off
 const MAX_AWAY_MS = 7 * 24 * 3600 * 1000;               // catching up longer than a week is not worth the wait
-const livesOn = (d) => prefs.get('live.' + d.id, d.kind === 'Virtual pet');
+const livesOn = (d) => prefs.get('live.' + d.id, d.group === 'pet');
 function duration(ms) {
   const m = Math.round(ms / 60000);
   if (m < 1) return `${Math.round(ms / 1000)} s`;
@@ -639,6 +644,7 @@ async function boot() {
 }
 
 $('#btn-menu').onclick = settingsMenu;
+for (const b of document.querySelectorAll('.filter button')) b.onclick = () => { prefs.set('filter', b.dataset.filter); renderLibrary(); };
 $('#btn-fetch').onclick = () => fetchUpstream();
 $('#import-input').onchange = async (e) => { const f = [...e.target.files]; e.target.value = ''; if (f.length) await importFiles(f); };
 $('#btn-back').onclick = closePlayer;
