@@ -1,0 +1,66 @@
+{
+ "id": "3a513c02-f598-419e-bd5a-2ff0f6a23f98",
+ "core": "E0C6200",
+ "face_path": "TamagotchiMorino.svg",
+ "clock": 1060000,
+ "RAM": 768,
+ "buttons": {
+  "screenFrame": {
+   "hot_keys": [
+    52
+   ]
+  },
+  "btnLeft": {
+   "hot_keys": [
+    49
+   ]
+  },
+  "btnCenter": {
+   "hot_keys": [
+    50
+   ]
+  },
+  "btnRight": {
+   "hot_keys": [
+    51
+   ]
+  }
+ },
+ "display": {
+  "motion_blur": 0.6,
+  "ghost_segments": 0.08,
+  "shadow": 4
+ },
+ "peripherals": {
+  "direct_input": {
+   "screenFrame": {
+    "port": "K0",
+    "mask": 8,
+    "level": 0
+   },
+   "btnLeft": {
+    "port": "K0",
+    "mask": 4,
+    "level": 0
+   },
+   "btnCenter": {
+    "port": "K0",
+    "mask": 2,
+    "level": 0
+   },
+   "btnRight": {
+    "port": "K0",
+    "mask": 1,
+    "level": 0
+   }
+  }
+ },
+ "mask_options": {
+  "rom_path": "TamagotchiMorino.bin",
+  "port_pullup": {
+   "K0": 15,
+   "K1": 15
+  },
+  "p3_dedicated": 0
+ }
+}

@@ -119,3 +119,11 @@ kbd { background: var(--bg); border: 1px solid var(--line); border-radius: 5px; 
   .sheet { align-items: center; }
   .sheet-panel { border-radius: 18px; }
 }
+
+/* ---------- catching up on time away (virtual pets) ---------- */
+#player { position: relative; }
+.catchup { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 18px); transform: translateX(-50%);
+  display: flex; align-items: center; gap: 12px; padding: 10px 10px 10px 16px; border-radius: var(--radius);
+  background: var(--panel); border: 1px solid var(--line); box-shadow: 0 6px 24px rgba(0,0,0,.4);
+  font-size: 14px; max-width: calc(100vw - 32px); }
+.catchup.hidden { display: none; }

@@ -1,0 +1,100 @@
+{
+ "id": "6087bc43-6847-4ecd-8166-dc27848d0747",
+ "core": "E0C6200",
+ "face_path": "RadioShackStackChallenge.svg",
+ "clock": 2000000,
+ "buttons": {
+  "btnPause": {
+   "hot_keys": [
+    49
+   ]
+  },
+  "btnSound": {
+   "hot_keys": [
+    50
+   ]
+  },
+  "btnOnOff": {
+   "hot_keys": [
+    51
+   ]
+  },
+  "btnLeft": {
+   "hot_keys": [
+    65,
+    16777234
+   ]
+  },
+  "btnDown": {
+   "hot_keys": [
+    83,
+    16777237
+   ]
+  },
+  "btnRight": {
+   "hot_keys": [
+    68,
+    16777236
+   ]
+  },
+  "btnRotate": {
+   "hot_keys": [
+    32,
+    16777235,
+    16777220
+   ]
+  }
+ },
+ "display": {
+  "motion_blur": 0.6,
+  "ghost_segments": 0.02,
+  "shadow": 12
+ },
+ "peripherals": {
+  "direct_input": {
+   "btnPause": {
+    "port": "K1",
+    "mask": 2,
+    "level": 0
+   },
+   "btnSound": {
+    "port": "K1",
+    "mask": 4,
+    "level": 0
+   },
+   "btnOnOff": {
+    "port": "K1",
+    "mask": 1,
+    "level": 0
+   },
+   "btnLeft": {
+    "port": "K0",
+    "mask": 1,
+    "level": 0
+   },
+   "btnDown": {
+    "port": "K0",
+    "mask": 2,
+    "level": 0
+   },
+   "btnRight": {
+    "port": "K0",
+    "mask": 4,
+    "level": 0
+   },
+   "btnRotate": {
+    "port": "K0",
+    "mask": 8,
+    "level": 0
+   }
+  }
+ },
+ "mask_options": {
+  "rom_path": "RadioShackStackChallenge.bin",
+  "port_pullup": {
+   "K0": 15,
+   "K1": 15
+  },
+  "p3_dedicated": 0
+ }
+}

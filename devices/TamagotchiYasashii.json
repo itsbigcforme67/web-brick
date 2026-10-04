@@ -1,0 +1,131 @@
+{
+ "id": "fbdd6952-910b-41fc-b93d-55315ed4aa14",
+ "core": "E0C6200",
+ "face_path": "TamagotchiYasashii.svg",
+ "clock": 1060000,
+ "RAM": 768,
+ "buttons": {
+  "btnFood": {
+   "hot_keys": [
+    49,
+    81
+   ]
+  },
+  "btnSmile": {
+   "hot_keys": [
+    50,
+    87
+   ]
+  },
+  "btnHeart": {
+   "hot_keys": [
+    51,
+    69
+   ]
+  },
+  "btnClean": {
+   "hot_keys": [
+    52,
+    65
+   ]
+  },
+  "btnBulb": {
+   "hot_keys": [
+    53,
+    83
+   ]
+  },
+  "btnWeight": {
+   "hot_keys": [
+    54,
+    68
+   ]
+  },
+  "btnSelect": {
+   "hot_keys": [
+    55,
+    90
+   ]
+  },
+  "btnCancel": {
+   "hot_keys": [
+    56,
+    88
+   ]
+  },
+  "btnReset": {
+   "hot_keys": [
+    82
+   ]
+  }
+ },
+ "display": {
+  "motion_blur": 0.6,
+  "ghost_segments": 0.08,
+  "shadow": 9
+ },
+ "peripherals": {
+  "direct_input": {
+   "btnFood": {
+    "port": "K1",
+    "mask": 8,
+    "level": 0
+   },
+   "btnSmile": {
+    "port": "K1",
+    "mask": 4,
+    "level": 0
+   },
+   "btnHeart": {
+    "port": "K1",
+    "mask": 2,
+    "level": 0
+   },
+   "btnClean": {
+    "port": "K1",
+    "mask": 1,
+    "level": 0
+   },
+   "btnBulb": {
+    "port": "K0",
+    "mask": 8,
+    "level": 0
+   },
+   "btnWeight": {
+    "port": "K0",
+    "mask": 4,
+    "level": 0
+   },
+   "btnSelect": {
+    "port": "K0",
+    "mask": 2,
+    "level": 0
+   },
+   "btnCancel": {
+    "port": "K0",
+    "mask": 1,
+    "level": 0
+   },
+   "btnReset": {
+    "port": "RES",
+    "mask": 0,
+    "level": 1
+   }
+  }
+ },
+ "mask_options": {
+  "rom_path": "TamagotchiYasashii.bin",
+  "port_pullup": {
+   "K0": 15,
+   "K1": 15
+  },
+  "port_pushpull": {
+   "R0": 15,
+   "R1": 15,
+   "R2": 15,
+   "R3": 15,
+   "R4": 15
+  },
+  "p3_dedicated": 0
+ }
+}

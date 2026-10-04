@@ -242,7 +242,56 @@ async function deviceMenu(d) {
 }
 
 // ------------------------------------------------------------------ player
-const player = { dev: null, brick: null, m: null, raf: 0, last: 0, lcdAcc: 0, segs: [], hits: {}, keys: {}, audio: null, muted: prefs.get('muted', false), pad: {}, opening: false };
+const player = { dev: null, brick: null, m: null, raf: 0, last: 0, lcdAcc: 0, segs: [], hits: {}, keys: {}, audio: null, muted: prefs.get('muted', false), pad: {}, opening: false, catching: null, hiddenAt: 0 };
+
+// ---- time passing while away: virtual pets keep living (hunger, age, the clock) unless switched off
+const MAX_AWAY_MS = 7 * 24 * 3600 * 1000;               // catching up longer than a week is not worth the wait
+const livesOn = (d) => prefs.get('live.' + d.id, d.kind === 'Virtual pet');
+function duration(ms) {
+  const m = Math.round(ms / 60000);
+  if (m < 1) return `${Math.round(ms / 1000)} s`;
+  if (m < 60) return `${m} min`;
+  const h = Math.floor(m / 60);
+  if (h < 48) return `${h} h ${m % 60} min`;
+  return `${Math.floor(h / 24)} days ${h % 24} h`;
+}
+
+/** Run the machine through `ms` of its own time as fast as the device allows, in 30 ms slices.
+ *  Resolves when done or when the player skips the rest (which then simply does not happen). */
+function catchUp(ms) {
+  ms = Math.min(ms, MAX_AWAY_MS);
+  if (!player.m || ms < 2000) return Promise.resolve();
+  if (player.catching) { player.catching.left += ms; player.catching.total += ms; return player.catching.done; }
+  releaseEverything();
+  const box = $('#catchup');
+  const c = { left: ms, total: ms, skip: false };
+  player.catching = c;
+  box.classList.remove('hidden');
+  $('#catchup-skip').onclick = () => { c.skip = true; };
+  c.done = new Promise((resolve) => {
+    const m = player.m;
+    const slice = () => {
+      if (player.m !== m) { box.classList.add('hidden'); player.catching = null; resolve(); return; }
+      const until = performance.now() + 30;
+      while (c.left > 0 && !c.skip && performance.now() < until) {
+        const step = Math.min(c.left, 1000);
+        m.runMs(step);
+        m.readAudio();                                    // nobody was there to hear it
+        c.left -= step;
+      }
+      $('#catchup-text').textContent = `Catching up on ${duration(c.total)} away… ${Math.floor(100 * (1 - c.left / c.total))}%`;
+      drawLcd(true);
+      if (c.left > 0 && !c.skip) { setTimeout(slice, 0); return; }   // timers, not frames: keeps going even where nothing is painted
+      box.classList.add('hidden');
+      player.catching = null;
+      player.last = performance.now();
+      if (c.skip) toast(`Skipped ${duration(c.left)}: that time did not pass for ${player.dev ? player.dev.name : 'it'}`, 3600);
+      resolve();
+    };
+    setTimeout(slice, 0);
+  });
+  return c.done;
+}
 
 // BrickEmuPy stores keyboard shortcuts as Qt key codes
 const QT_KEYS = { ArrowLeft: 16777234, ArrowUp: 16777235, ArrowRight: 16777236, ArrowDown: 16777237, Enter: 16777220, Escape: 16777216, Tab: 16777217, Backspace: 16777219, ' ': 32 };
@@ -276,13 +325,15 @@ async function openDevice(d) {
     const m = await Machine.create(module, { brick, rom, soundRom: srom, sampleRate: player.audio ? player.audio.ctx.sampleRate : 0, gain: 16384 });
     let resumed = false;
     if (snap && snap.format === STATE_FORMAT && snap.data) resumed = m.loadState(snap.data);
+    const away = resumed && livesOn(d) && snap.saved ? Date.now() - snap.saved : 0;
     if (!resumed) m.reset();
     Object.assign(player, { dev: d, brick, m, last: performance.now(), lcdAcc: 0, keys: {}, pad: {} });
     mountFace(svgText);
     applySound();
     cancelAnimationFrame(player.raf);
     player.raf = requestAnimationFrame(frame);
-    if (resumed) toast('Continued where you left off', 1600);
+    if (away >= 2000) catchUp(away);
+    else if (resumed) toast('Continued where you left off', 1600);
   } catch (e) {
     console.error(e);
     toast('Could not start: ' + e.message, 4000);
@@ -426,6 +477,7 @@ function drawLcd(snap) {
 function frame(now) {
   const dt = Math.min(Math.max(now - player.last, 0), 100);   // after a pause (tab hidden) do not try to catch up
   player.last = now;
+  if (player.catching) { player.raf = requestAnimationFrame(frame); return; }
   pollGamepad();
   player.m.runMs(dt);
   pumpAudio();
@@ -437,7 +489,7 @@ function frame(now) {
 }
 
 async function saveNow() {
-  if (!player.m || !player.dev) return;
+  if (!player.m || !player.dev || player.catching) return;   // mid catch-up the state is behind the clock
   const data = player.m.saveState();
   if (data) { await db.set('state:' + player.dev.id, { format: STATE_FORMAT, data, saved: Date.now() }); saved[player.dev.id] = Date.now(); }
 }
@@ -492,7 +544,7 @@ function pumpAudio() {
 
 // ---- keyboard and gamepad
 function onKey(e, down) {
-  if (!player.m || !$('#sheet').classList.contains('hidden')) return;
+  if (!player.m || player.catching || !$('#sheet').classList.contains('hidden')) return;
   if (e.key === 'Escape') { if (down) closePlayer(); return; }
   if (e.repeat) { e.preventDefault(); return; }
   const code = qtCode(e);
@@ -529,10 +581,13 @@ async function playerMenu() {
     <p style="margin-top:14px">Screen</p>
     ${box('fx-blur', 'Slow liquid crystal (segments fade in and out)', 'lcdBlur')}
     ${box('fx-ghost', 'Faint unlit segments', 'lcdGhost')}
-    ${box('fx-shadow', 'Segment shadows', 'lcdShadow')}`;
+    ${box('fx-shadow', 'Segment shadows', 'lcdShadow')}
+    <p style="margin-top:14px">Time</p>
+    <label class="field"><input type="checkbox" id="live" ${livesOn(d) ? 'checked' : ''}><span>Time passes while the app is closed (it catches up when you come back)</span></label>`;
   const v = await sheet(d.name, body, [{ label: 'Take the batteries out (full reset)', value: 'reset', cls: 'danger' }, { label: 'Close', value: null }], (el) => {
     const bind = (id, key, remount) => { el.querySelector('#' + id).onchange = async (e) => { prefs.set(key, e.target.checked); if (remount) mountFace(await fetch('devices/' + d.face).then((r) => r.text())); }; };
     bind('fx-blur', 'lcdBlur'); bind('fx-ghost', 'lcdGhost'); bind('fx-shadow', 'lcdShadow', true);
+    el.querySelector('#live').onchange = (e) => prefs.set('live.' + d.id, e.target.checked);
   });
   if (v === 'reset') { releaseEverything(); player.m.reset(); await db.del('state:' + d.id); delete saved[d.id]; toast('Reset: scores and progress cleared'); }
   player.last = performance.now();
@@ -592,7 +647,13 @@ $('#btn-sound').onclick = () => { player.muted = !player.muted; prefs.set('muted
 window.addEventListener('keydown', (e) => onKey(e, true));
 window.addEventListener('keyup', (e) => onKey(e, false));
 window.addEventListener('blur', releaseEverything);
-document.addEventListener('visibilitychange', () => { if (document.hidden) saveNow(); else player.last = performance.now(); });
+document.addEventListener('visibilitychange', () => {
+  if (document.hidden) { player.hiddenAt = Date.now(); saveNow(); return; }
+  player.last = performance.now();
+  // the page was in the background, where animation frames stop: a pet catches up on the time it missed
+  if (player.m && player.dev && player.hiddenAt && livesOn(player.dev)) catchUp(Date.now() - player.hiddenAt);
+  player.hiddenAt = 0;
+});
 window.addEventListener('pagehide', () => { saveNow(); });
 document.addEventListener('dragover', (e) => e.preventDefault());
 document.addEventListener('drop', (e) => { e.preventDefault(); if (!player.m && e.dataTransfer && e.dataTransfer.files.length) importFiles([...e.dataTransfer.files]); });
