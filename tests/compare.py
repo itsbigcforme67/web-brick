@@ -14,11 +14,11 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import brickcfg
 
-SUPPORTED = {'HT943', 'HTG12N0'}
+SUPPORTED = {'HT943', 'HTG12N0', 'E0C6200'}
 
 def build():
     exe = os.path.join(HERE, 'host_trace')
-    src = [os.path.join(HERE, 'host_trace.cpp')] + [os.path.join(HERE, '..', 'core', f) for f in ('brick.cpp', 'ht4bit.cpp')]
+    src = [os.path.join(HERE, 'host_trace.cpp')] + [os.path.join(HERE, '..', 'core', f) for f in ('brick.cpp', 'ht4bit.cpp', 'e0c6200.cpp')]
     cxx = os.environ.get('CXX', 'g++')
     subprocess.check_call([cxx, '-std=c++11', '-O2', '-Wall', '-Wextra', '-o', exe] + src)
     return exe
@@ -61,8 +61,17 @@ def main():
     a = ap.parse_args()
     exe = build()
     import shutil
-    node = shutil.which('node') if os.path.exists(os.path.join(HERE, '..', 'web', 'core', 'brick.wasm')) else None
-    if not node: print('(node or web/core/brick.wasm not found: skipping the WebAssembly check)')
+    # the built brick.wasm is run in Node, or else with wasmtime from Python (pip install wasmtime)
+    wasm_cmd = None
+    if os.path.exists(os.path.join(HERE, '..', 'web', 'core', 'brick.wasm')):
+        if shutil.which('node'): wasm_cmd = [shutil.which('node'), os.path.join(HERE, 'wasm_trace.mjs')]
+        else:
+            try:
+                import wasmtime  # noqa: F401
+                wasm_cmd = [sys.executable, os.path.join(HERE, 'wasm_trace.py')]
+            except ImportError: pass
+    node = wasm_cmd
+    if not node: print('(neither node nor the wasmtime module found, or web/core/brick.wasm missing: skipping the WebAssembly check)')
     devices = a.devices or sorted(f[:-6] for f in os.listdir(os.path.join(a.brickemu, 'assets')) if f.endswith('.brick'))
     failed = 0; ran = 0
     with tempfile.TemporaryDirectory() as tmp:
@@ -83,7 +92,7 @@ def main():
             ran += 1
             wasm = None
             if node:
-                w = subprocess.run([node, os.path.join(HERE, 'wasm_trace.mjs'), a.brickemu, dev, sf, total, str(a.every)], capture_output=True, text=True)
+                w = subprocess.run(wasm_cmd + [a.brickemu, dev, sf, total, str(a.every)], capture_output=True, text=True)
                 refc = '\n'.join(l for l in ref.stdout.split('\n') if not l.startswith('A'))
                 wasm = diff(refc, w.stdout) if w.returncode == 0 else 'WebAssembly run failed: ' + w.stderr[-400:]
             d = diff(ref.stdout, got.stdout) if got.returncode == 0 else 'C++ run failed: ' + got.stderr
@@ -100,7 +109,7 @@ def main():
     demo_rom = os.path.join(a.brickemu, 'assets', 'E23PlusMarkII96in1.bin')
     if os.path.exists(demo_rom):
         demo = os.path.join(HERE, 'embed_example')
-        core = [os.path.join(HERE, '..', 'core', f) for f in ('brick.cpp', 'ht4bit.cpp')]
+        core = [os.path.join(HERE, '..', 'core', f) for f in ('brick.cpp', 'ht4bit.cpp', 'e0c6200.cpp')]
         subprocess.check_call([os.environ.get('CXX', 'g++'), '-std=c++11', '-O2', '-Wall', '-Wextra', '-o', demo, os.path.join(HERE, 'embed_example.cpp')] + core)
         r = subprocess.run([demo, demo_rom, demo_rom[:-4] + '.srom'], capture_output=True, text=True)
         print('%-28s %s   %s' % ('embed_example', 'OK' if r.returncode == 0 else 'FAIL', r.stdout.strip()))

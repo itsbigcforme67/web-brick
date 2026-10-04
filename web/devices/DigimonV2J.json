@@ -1,0 +1,69 @@
+{
+ "id": "afcccb86-1210-4526-be21-40d4f248717f",
+ "core": "E0C6200",
+ "face_path": "DigimonV2J.svg",
+ "clock": 1060000,
+ "buttons": {
+  "btnTop": {
+   "hot_keys": [
+    49
+   ]
+  },
+  "btnCenter": {
+   "hot_keys": [
+    50
+   ]
+  },
+  "btnBottom": {
+   "hot_keys": [
+    51
+   ]
+  },
+  "btnReset": {
+   "hot_keys": [
+    82
+   ]
+  }
+ },
+ "display": {
+  "motion_blur": 0.6,
+  "ghost_segments": 0.08,
+  "shadow": 12
+ },
+ "peripherals": {
+  "CON_DGM": {
+   "port": "P2",
+   "mask": 1
+  },
+  "direct_input": {
+   "btnTop": {
+    "port": "K0",
+    "mask": 4,
+    "level": 0
+   },
+   "btnCenter": {
+    "port": "K0",
+    "mask": 2,
+    "level": 0
+   },
+   "btnBottom": {
+    "port": "K0",
+    "mask": 1,
+    "level": 0
+   },
+   "btnReset": {
+    "port": "RES",
+    "mask": 0,
+    "level": 0
+   }
+  }
+ },
+ "mask_options": {
+  "rom_path": "DigimonV2J.bin",
+  "port_pullup": {
+   "K0": 15,
+   "K1": 15
+  },
+  "p3_dedicated": 0
+ }
+}

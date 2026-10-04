@@ -81,8 +81,12 @@ def main():
             pg.locator('.game').nth(i).click()
             pg.wait_for_selector('#stage svg')
             time.sleep(2.5)
-            info = pg.evaluate("() => ({ segs: %s.segs.length, hits: Object.keys(%s.hits).length, buttons: Object.keys(%s.brick.buttons).length })" % (P, P, P))
+            info = pg.evaluate("() => ({ segs: %s.segs.length, hits: Object.keys(%s.hits).length, buttons: Object.keys(%s.brick.buttons).length, names: Object.keys(%s.brick.buttons) })" % (P, P, P, P))
             lit = pg.evaluate(lit_js)
+            power = next((n for n in ('btnOnOff', 'btnOn', 'btnStartOn', 'btnOnReset') if n in info['names']), None)
+            if not lit and power:                     # some handhelds start switched off, like the real ones
+                pg.evaluate("(n) => { %s.m.press(n, true); setTimeout(() => %s.m.press(n, false), 200); }" % (P, P), power)
+                time.sleep(2.0); lit = pg.evaluate(lit_js)
             check('%s boots and draws' % d['id'], info['segs'] > 50 and lit.count(',') > 3 and info['hits'] == info['buttons'], '%d segments, %d lit, %d buttons' % (info['segs'], lit.count(',') + 1 if lit else 0, info['hits']))
             shot(pg, 'device-' + d['id'])
             pg.click('#btn-back'); pg.wait_for_selector('#library.active')
@@ -116,6 +120,32 @@ def main():
         pg.locator('.game').first.click(); pg.wait_for_selector('#stage svg')
         check('game continues after reloading the page', 'Continued' in pg.inner_text('#toast'))
         pg.click('#btn-back'); pg.wait_for_selector('#library.active')
+
+        # --- time passing while away (on by default for virtual pets; switched on here for a game that has a ROM)
+        ids = [d['id'] for d in index['devices']]
+        if 'AlienFever' in ids:
+            card = pg.locator('.game').nth(ids.index('AlienFever'))
+            pg.evaluate("localStorage.setItem('wbk.live.AlienFever', 'true')")
+            backdate = """async (hours) => {
+              const d = await new Promise((res) => { const r = indexedDB.open('web-brick', 1); r.onsuccess = () => res(r.result); });
+              const s = await new Promise((res) => { const q = d.transaction('kv').objectStore('kv').get('state:AlienFever'); q.onsuccess = () => res(q.result); });
+              s.saved = Date.now() - hours * 3600e3;
+              await new Promise((res) => { const t = d.transaction('kv', 'readwrite'); t.objectStore('kv').put(s, 'state:AlienFever'); t.oncomplete = res; });
+            }"""
+            card.click(); pg.wait_for_selector('#stage svg'); time.sleep(1.0)
+            pg.click('#btn-back'); pg.wait_for_selector('#library.active')
+            pg.evaluate(backdate, 0.5)
+            t0 = time.time(); card.click()
+            pg.wait_for_selector('#catchup:not(.hidden)', timeout=5000)
+            pg.wait_for_selector('#catchup.hidden', state='attached', timeout=60000)
+            check('time away is caught up on', pg.evaluate("() => !%s.catching && !!%s.m" % (P, P)), '30 min in %.1f s' % (time.time() - t0))
+            pg.click('#btn-back'); pg.wait_for_selector('#library.active')
+            pg.evaluate(backdate, 48)
+            card.click(); pg.wait_for_selector('#catchup:not(.hidden)', timeout=5000)
+            shot(pg, '3b-catching-up')
+            pg.click('#catchup-skip'); pg.wait_for_selector('#catchup.hidden', state='attached', timeout=5000)
+            check('catching up can be skipped', 'Skipped' in pg.inner_text('#toast'), pg.inner_text('#toast'))
+            pg.click('#btn-back'); pg.wait_for_selector('#library.active')
 
         # --- sideways phone and desktop layouts
         pg.set_viewport_size({'width': 844, 'height': 390})

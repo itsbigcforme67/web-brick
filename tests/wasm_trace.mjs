@@ -24,7 +24,7 @@ while (cyc < total) {
   const k = m.step();
   cyc += k; step++;
   flow = Math.imul(flow ^ m.pc, 16777619) >>> 0;
-  flow = Math.imul(flow ^ k, 16777619) >>> 0;
+  flow = Math.imul(flow ^ (cyc >>> 0), 16777619) >>> 0;
   if (step % every === 0) {
     out.push(`C ${step} ${cyc} ${flow.toString(16).padStart(8, '0')} ${m.stateHash().toString(16).padStart(8, '0')}`);
     m.readAudio();

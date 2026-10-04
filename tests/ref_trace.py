@@ -21,13 +21,13 @@ def main():
     from interconnect import Interconnect
 
     out = []
-    state = {'cyc': 0, 'chan': {}}
+    state = {'cyc': 0, 'chan': {}}   # cyc: whole cycles run so far
     class Emu:
         def audio_handler(self, ch, data):
             ev = (0, 0, 0, 0) if data is None else (1, int(data[0] * 256), int(bool(data[1])), int(round(data[2] * 256)))
             if state['chan'].get(ch, (0, 0, 0, 0)) != ev:
                 state['chan'][ch] = ev
-                out.append('A %d %d %d %d %d %d' % ((state['cyc'], ch) + ev))
+                out.append('A %d %d %d %d %d %d' % ((int(state['cyc']), ch) + ev))
         def serial_tx_handler(self, data): pass
     ic = Interconnect(Emu())
     cpu = cores_map[cfg['core']]['core'](cfg['mask_options'], cfg['clock'], ic)
@@ -48,9 +48,9 @@ def main():
             ic.emit_input(events[ei][1], events[ei][2]); ei += 1
         state['cyc'] = cyc
         k = clock(); emit_clock(k)
-        cyc += k; step += 1
+        cyc += k; step += 1                          # some cores (E0C6200) return fractions of a cycle
         flow = ((flow ^ pc()) * 16777619) & M
-        flow = ((flow ^ k) * 16777619) & M
+        flow = ((flow ^ (int(cyc) & M)) * 16777619) & M
         if step % every == 0:
             h = 2166136261
             for v in cpu.examine().values():
@@ -58,7 +58,7 @@ def main():
                     for x in v: h = ((h ^ int(x)) * 16777619) & M
                 else: h = ((h ^ int(v)) * 16777619) & M
             for x in cpu.get_VRAM(): h = ((h ^ int(x)) * 16777619) & M
-            out.append('C %d %d %08x %08x' % (step, cyc, flow, h))
+            out.append('C %d %d %08x %08x' % (step, int(cyc), flow, h))
     sys.stdout.write('\n'.join(out) + '\n')
 
 main()

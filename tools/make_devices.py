@@ -15,7 +15,9 @@ OUT = os.path.join(HERE, '..', 'web', 'devices')
 sys.path.insert(0, os.path.join(HERE, '..', 'tests'))
 import brickcfg
 
-SUPPORTED_CORES = {'HT943', 'HTG12N0'}
+SUPPORTED_CORES = {'HT943', 'HTG12N0', 'E0C6200'}
+# peripherals a device may have that are not needed to play it alone (the Digimon battle link)
+OPTIONAL_PERIPHERALS = {'CON_DGM'}
 
 # id: (name, what it is, detail line)
 INFO = {
@@ -29,6 +31,24 @@ INFO = {
     'MameGalaxian': ('Mame Galaxian', 'Keychain game', 'HTB943R0'),
     'MameTamagotch': ('Mame Game Tamagotch', 'Keychain game', 'HTGL43Q0'),
     'MickeyVGS': ('Mickey Deluxe Virtual Game', 'Virtual pet', 'HTGT43N0'),
+    'TamagotchiP1': ('Tamagotchi', 'Virtual pet', 'Bandai · first generation (P1)'),
+    'TamagotchiP1J': ('Tamagotchi (Japan)', 'Virtual pet', 'Bandai · first generation, Japanese'),
+    'TamagotchiP2': ('Tamagotchi P2', 'Virtual pet', 'Bandai · second generation'),
+    'TamagotchiAngel': ('Angel Tamagotchi', 'Virtual pet', 'Bandai · Tenshitchi no Tamagotchi'),
+    'TamagotchiMothra': ('Mothra Tamagotchi', 'Virtual pet', 'Bandai'),
+    'TamagotchiMorino': ('Morino Tamagotchi', 'Virtual pet', 'Bandai · forest'),
+    'TamagotchiUmino': ('Umino Tamagotchi', 'Virtual pet', 'Bandai · ocean'),
+    'TamagotchiGenjintch': ('Genjintchi', 'Virtual pet', 'Bandai · Tamagotchi'),
+    'TamagotchiYasashii': ('Yasashii Tamagotchi', 'Virtual pet', 'Bandai'),
+    'DigimonV1ES': ('Digimon Ver. 1 (English)', 'Virtual pet', 'Bandai · Digital Monster'),
+    'DigimonV1JA': ('Digital Monster Ver. 1', 'Virtual pet', 'Bandai · Japanese, revision A'),
+    'DigimonV1JB': ('Digital Monster Ver. 1 (rev. B)', 'Virtual pet', 'Bandai · Japanese, revision B'),
+    'DigimonV2J': ('Digital Monster Ver. 2', 'Virtual pet', 'Bandai · Japanese'),
+    'DigimonV3J': ('Digital Monster Ver. 3', 'Virtual pet', 'Bandai · Japanese'),
+    'DigimonV4J': ('Digital Monster Ver. 4', 'Virtual pet', 'Bandai · Japanese'),
+    'AlienFever': ('Alien Fever', 'LCD game', 'E0C6200'),
+    'RadioShackStackChallenge': ('Stack Challenge', 'LCD game', 'Radio Shack · E0C6200'),
+    'nikko': ('Nikko', 'LCD game', 'E0C6200'),
 }
 ORDER = list(INFO)
 
@@ -36,13 +56,16 @@ ORDER = list(INFO)
 PAD_GUESS = {
     'left': ['btnLeft', 'btnEarLeft'], 'right': ['btnRight', 'btnEarRight'], 'down': ['btnDown', 'btnLife'],
     'up': ['btnUp', 'btnRotate', 'btnStartRotate', 'btnFire', 'btnContinue'],
-    'a': ['btnRotate', 'btnStartRotate', 'btnFire', 'btnStartShoot', 'btnStartOn', 'btnA', 'btnStart'],
-    'b': ['btnB'],
+    'a': ['btnRotate', 'btnStartRotate', 'btnFire', 'btnStartShoot', 'btnStartOn', 'btnA', 'btnStart', 'btnCenter', 'btnHandle'],
+    'b': ['btnB', 'btnRight', 'btnBottom'],
     'start': ['btnStart', 'btnPause', 'btnOnPause'],
     'select': ['btnMute', 'btnSound', 'btnSelect', 'btnReset'],
 }
 PAD_OVERRIDE = {
     'MickeyVGS': {'left': 'btnEarLeft', 'right': 'btnEarRight', 'a': 'btnLeft', 'b': 'btnRight'},
+    # Digimon: top = select, centre = confirm, bottom = cancel
+    **{d: {'up': 'btnTop', 'left': 'btnTop', 'a': 'btnCenter', 'right': 'btnCenter', 'b': 'btnBottom', 'down': 'btnBottom'}
+       for d in ('DigimonV1ES', 'DigimonV1JA', 'DigimonV1JB', 'DigimonV2J', 'DigimonV3J', 'DigimonV4J')},
     'Puyolin': {'left': 'btnLeft', 'right': 'btnRight', 'down': 'btnDown', 'a': 'btnStart', 'start': 'btnPause', 'select': 'btnMute'},
 }
 
@@ -73,7 +96,7 @@ def main():
         face_src = brickcfg.resolve(a.brickemu, cfg['face_path'])
         if not os.path.exists(face_src): print('skip %s: no faceplate' % dev); continue
         unwired = [n for n in cfg['buttons'] if n not in cfg.get('peripherals', {}).get('direct_input', {})]
-        if unwired or set(cfg.get('peripherals', {})) - {'direct_input'}:
+        if unwired or set(cfg.get('peripherals', {})) - {'direct_input'} - OPTIONAL_PERIPHERALS:
             print('skip %s: needs a peripheral the core does not have yet' % dev); continue
         mask = cfg['mask_options']
         roms = []

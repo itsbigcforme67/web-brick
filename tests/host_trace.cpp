@@ -107,7 +107,7 @@ int main(int argc, char** argv) {
     rig->m.audio.advance((uint32_t)k);
     cyc += (uint64_t)k; step++;
     flow = (flow ^ rig->m.core->pc()) * 16777619u;
-    flow = (flow ^ (uint32_t)k) * 16777619u;
+    flow = (flow ^ (uint32_t)cyc) * 16777619u;
     if (step % every == 0) {
       snprintf(b, sizeof b, "C %u %llu %08x %08x\n", step, (unsigned long long)cyc, flow, stateHash(rig->m));
       g_out += b;

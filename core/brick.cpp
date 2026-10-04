@@ -2,6 +2,7 @@
 // Copyright (C) 2026 the web-brick authors. GPL-3.0-or-later; see LICENSE. No warranty.
 #include "brick.h"
 #include "ht4bit.h"
+#include "e0c6200.h"
 
 namespace brick {
 
@@ -102,14 +103,18 @@ void Audio::sync(State& s) {
 // ------------------------------------------------------------------------------------------ cores
 size_t coreSize(const char* name) {
   if (strEq(name, "HT943") || strEq(name, "HTG12N0")) return sizeof(HT4Bit);
+  if (strEq(name, "E0C6200")) return sizeof(E0C6200);
   return 0;
 }
 
+static const size_t CORE_ALIGN = alignof(HT4Bit) > alignof(E0C6200) ? alignof(HT4Bit) : alignof(E0C6200);
+
 Core* createCore(const char* name, void* mem, size_t memSize) {
   size_t need = coreSize(name);
-  if (!need || memSize < need || ((uintptr_t)mem & (alignof(HT4Bit) - 1))) return nullptr;
+  if (!need || memSize < need || ((uintptr_t)mem & (CORE_ALIGN - 1))) return nullptr;
   if (strEq(name, "HT943")) return new (PlaceTag(), mem) HT4Bit(HT4Bit::HT943);
   if (strEq(name, "HTG12N0")) return new (PlaceTag(), mem) HT4Bit(HT4Bit::HTG12N0);
+  if (strEq(name, "E0C6200")) return new (PlaceTag(), mem) E0C6200();
   return nullptr;
 }
 

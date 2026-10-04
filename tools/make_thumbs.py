@@ -31,7 +31,14 @@ def screen_after(brickemu, cfg, seconds=6):
         for n, v in cfg.get('peripherals', {}).items():
             if n in peripherals_map: peripherals_map[n](v, ic)
         best = None; cyc = 0; target = cfg['clock'] * seconds; nxt = cfg['clock'] // 2
+        # a handheld that starts switched off (as some real ones do) gets its power button pressed after a second
+        power = next((n for n in ('btnOnOff', 'btnOn') if n in cfg['buttons']), None)
+        pressed = 0
         while cyc < target:
+            if power and pressed == 0 and cyc > cfg['clock']:
+                if any(cpu.get_VRAM()): pressed = 2      # it is on already
+                else: ic.emit_input(power, True); pressed = 1
+            if pressed == 1 and cyc > cfg['clock'] * 1.2: ic.emit_input(power, False); pressed = 2
             k = cpu.clock(); ic.emit_clock(k); cyc += k
             if cyc >= nxt:                       # keep the busiest screen seen, sampled twice a second
                 nxt += cfg['clock'] // 2

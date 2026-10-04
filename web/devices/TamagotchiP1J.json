@@ -1,0 +1,55 @@
+{
+ "id": "5864af73-ddd9-4dcd-a5e7-2fa64a4a6c5a",
+ "core": "E0C6200",
+ "face_path": "TamagotchiP1J.svg",
+ "clock": 1600000,
+ "buttons": {
+  "btnLeft": {
+   "hot_keys": [
+    49
+   ]
+  },
+  "btnCenter": {
+   "hot_keys": [
+    50
+   ]
+  },
+  "btnRight": {
+   "hot_keys": [
+    51
+   ]
+  }
+ },
+ "display": {
+  "motion_blur": 0.6,
+  "ghost_segments": 0.08,
+  "shadow": 4
+ },
+ "peripherals": {
+  "direct_input": {
+   "btnLeft": {
+    "port": "K0",
+    "mask": 4,
+    "level": 0
+   },
+   "btnCenter": {
+    "port": "K0",
+    "mask": 2,
+    "level": 0
+   },
+   "btnRight": {
+    "port": "K0",
+    "mask": 1,
+    "level": 0
+   }
+  }
+ },
+ "mask_options": {
+  "rom_path": "TamagotchiP1J.bin",
+  "port_pullup": {
+   "K0": 15,
+   "K1": 15
+  },
+  "p3_dedicated": 0
+ }
+}

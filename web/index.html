@@ -7,7 +7,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="apple-mobile-web-app-title" content="Brick games">
+  <meta name="apple-mobile-web-app-title" content="Brick &amp; pets">
   <title>Web Brick</title>
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="icon.svg" type="image/svg+xml">
@@ -21,7 +21,7 @@
       <div class="brand">
         <span class="brand-mark" aria-hidden="true"></span>
         <div>
-          <h1>Brick games</h1>
+          <h1>Brick games &amp; pets</h1>
           <p id="lib-status" class="muted">Starting…</p>
         </div>
       </div>
@@ -55,6 +55,10 @@
       <button id="btn-pmenu" class="icon-btn" aria-label="Options">⋯</button>
     </header>
     <div id="stage" class="stage" aria-label="Handheld"></div>
+    <div id="catchup" class="catchup hidden" role="status">
+      <span id="catchup-text">Catching up…</span>
+      <button id="catchup-skip" class="btn small">Skip</button>
+    </div>
   </section>
 
   <!-- ============ SHEETS / DIALOGS ============ -->

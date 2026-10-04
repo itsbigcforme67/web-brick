@@ -1,7 +1,7 @@
 {
  "source": "https://github.com/azya52/BrickEmuPy",
- "commit": "4ba6081ee5a7327da88d8c031d42cd68aedf9c9d",
- "romBase": "https://raw.githubusercontent.com/azya52/BrickEmuPy/4ba6081ee5a7327da88d8c031d42cd68aedf9c9d/assets/",
+ "commit": "c069f5e34654950703c9258b456258f29c075bcd",
+ "romBase": "https://raw.githubusercontent.com/azya52/BrickEmuPy/c069f5e34654950703c9258b456258f29c075bcd/assets/",
  "devices": [
   {
    "id": "E23PlusMarkII96in1",
@@ -38,6 +38,7 @@
     "down": "btnDown",
     "up": "btnRotate",
     "a": "btnRotate",
+    "b": "btnRight",
     "start": "btnStart",
     "select": "btnMute"
    }
@@ -77,6 +78,7 @@
     "down": "btnDown",
     "up": "btnRotate",
     "a": "btnRotate",
+    "b": "btnRight",
     "start": "btnStart",
     "select": "btnMute"
    }
@@ -116,6 +118,7 @@
     "down": "btnDown",
     "up": "btnRotate",
     "a": "btnRotate",
+    "b": "btnRight",
     "start": "btnPause",
     "select": "btnReset"
    }
@@ -155,6 +158,7 @@
     "down": "btnDown",
     "up": "btnStartRotate",
     "a": "btnStartRotate",
+    "b": "btnRight",
     "start": "btnOnPause",
     "select": "btnSound"
    }
@@ -192,6 +196,7 @@
     "left": "btnLeft",
     "right": "btnRight",
     "a": "btnStartOn",
+    "b": "btnRight",
     "start": "btnPause",
     "select": "btnMute"
    }
@@ -269,6 +274,7 @@
     "down": "btnDown",
     "up": "btnFire",
     "a": "btnFire",
+    "b": "btnRight",
     "start": "btnPause",
     "select": "btnSound"
    }
@@ -302,6 +308,7 @@
     "down": "btnLife",
     "up": "btnContinue",
     "a": "btnStartShoot",
+    "b": "btnRight",
     "start": "btnPause",
     "select": "btnSound"
    }
@@ -335,6 +342,7 @@
     "down": "btnDown",
     "up": "btnStartRotate",
     "a": "btnStartRotate",
+    "b": "btnRight",
     "start": "btnPause",
     "select": "btnSound"
    }
@@ -372,6 +380,494 @@
     "left": "btnEarLeft",
     "right": "btnEarRight",
     "a": "btnLeft",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiP1",
+   "name": "Tamagotchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 first generation (P1)",
+   "core": "E0C6200",
+   "brick": "TamagotchiP1.json",
+   "face": "TamagotchiP1.svg",
+   "thumb": "TamagotchiP1.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiP1.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiP1J",
+   "name": "Tamagotchi (Japan)",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 first generation, Japanese",
+   "core": "E0C6200",
+   "brick": "TamagotchiP1J.json",
+   "face": "TamagotchiP1J.svg",
+   "thumb": "TamagotchiP1J.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiP1J.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiP2",
+   "name": "Tamagotchi P2",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 second generation",
+   "core": "E0C6200",
+   "brick": "TamagotchiP2.json",
+   "face": "TamagotchiP2.svg",
+   "thumb": "TamagotchiP2.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiP2.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiAngel",
+   "name": "Angel Tamagotchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Tenshitchi no Tamagotchi",
+   "core": "E0C6200",
+   "brick": "TamagotchiAngel.json",
+   "face": "TamagotchiAngel.svg",
+   "thumb": "TamagotchiAngel.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiAngel.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiMothra",
+   "name": "Mothra Tamagotchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai",
+   "core": "E0C6200",
+   "brick": "TamagotchiMothra.json",
+   "face": "TamagotchiMothra.svg",
+   "thumb": "TamagotchiMothra.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiMothra.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiMorino",
+   "name": "Morino Tamagotchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 forest",
+   "core": "E0C6200",
+   "brick": "TamagotchiMorino.json",
+   "face": "TamagotchiMorino.svg",
+   "thumb": "TamagotchiMorino.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiMorino.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiUmino",
+   "name": "Umino Tamagotchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 ocean",
+   "core": "E0C6200",
+   "brick": "TamagotchiUmino.json",
+   "face": "TamagotchiUmino.svg",
+   "thumb": "TamagotchiUmino.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiUmino.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiGenjintch",
+   "name": "Genjintchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Tamagotchi",
+   "core": "E0C6200",
+   "brick": "TamagotchiGenjintch.json",
+   "face": "TamagotchiGenjintch.svg",
+   "thumb": "TamagotchiGenjintch.webp",
+   "size": [
+    696,
+    858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiGenjintch.bin"
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
+    "b": "btnRight"
+   }
+  },
+  {
+   "id": "TamagotchiYasashii",
+   "name": "Yasashii Tamagotchi",
+   "kind": "Virtual pet",
+   "detail": "Bandai",
+   "core": "E0C6200",
+   "brick": "TamagotchiYasashii.json",
+   "face": "TamagotchiYasashii.svg",
+   "thumb": "TamagotchiYasashii.webp",
+   "size": [
+    2355,
+    2858
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "TamagotchiYasashii.bin"
+    }
+   ],
+   "pad": {
+    "select": "btnSelect"
+   }
+  },
+  {
+   "id": "DigimonV1ES",
+   "name": "Digimon Ver. 1 (English)",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Digital Monster",
+   "core": "E0C6200",
+   "brick": "DigimonV1ES.json",
+   "face": "DigimonV1ES.svg",
+   "thumb": "DigimonV1ES.webp",
+   "size": [
+    4027,
+    2691
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "DigimonV1ES.bin"
+    }
+   ],
+   "pad": {
+    "up": "btnTop",
+    "left": "btnTop",
+    "a": "btnCenter",
+    "right": "btnCenter",
+    "b": "btnBottom",
+    "down": "btnBottom"
+   }
+  },
+  {
+   "id": "DigimonV1JA",
+   "name": "Digital Monster Ver. 1",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Japanese, revision A",
+   "core": "E0C6200",
+   "brick": "DigimonV1JA.json",
+   "face": "DigimonV1JA.svg",
+   "thumb": "DigimonV1JA.webp",
+   "size": [
+    4028,
+    2692
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "DigimonV1JA.bin"
+    }
+   ],
+   "pad": {
+    "up": "btnTop",
+    "left": "btnTop",
+    "a": "btnCenter",
+    "right": "btnCenter",
+    "b": "btnBottom",
+    "down": "btnBottom"
+   }
+  },
+  {
+   "id": "DigimonV1JB",
+   "name": "Digital Monster Ver. 1 (rev. B)",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Japanese, revision B",
+   "core": "E0C6200",
+   "brick": "DigimonV1JB.json",
+   "face": "DigimonV1JB.svg",
+   "thumb": "DigimonV1JB.webp",
+   "size": [
+    4028,
+    2692
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "DigimonV1JB.bin"
+    }
+   ],
+   "pad": {
+    "up": "btnTop",
+    "left": "btnTop",
+    "a": "btnCenter",
+    "right": "btnCenter",
+    "b": "btnBottom",
+    "down": "btnBottom"
+   }
+  },
+  {
+   "id": "DigimonV2J",
+   "name": "Digital Monster Ver. 2",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Japanese",
+   "core": "E0C6200",
+   "brick": "DigimonV2J.json",
+   "face": "DigimonV2J.svg",
+   "thumb": "DigimonV2J.webp",
+   "size": [
+    4028,
+    2692
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "DigimonV2J.bin"
+    }
+   ],
+   "pad": {
+    "up": "btnTop",
+    "left": "btnTop",
+    "a": "btnCenter",
+    "right": "btnCenter",
+    "b": "btnBottom",
+    "down": "btnBottom"
+   }
+  },
+  {
+   "id": "DigimonV3J",
+   "name": "Digital Monster Ver. 3",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Japanese",
+   "core": "E0C6200",
+   "brick": "DigimonV3J.json",
+   "face": "DigimonV3J.svg",
+   "thumb": "DigimonV3J.webp",
+   "size": [
+    4028,
+    2692
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "DigimonV3J.bin"
+    }
+   ],
+   "pad": {
+    "up": "btnTop",
+    "left": "btnTop",
+    "a": "btnCenter",
+    "right": "btnCenter",
+    "b": "btnBottom",
+    "down": "btnBottom"
+   }
+  },
+  {
+   "id": "DigimonV4J",
+   "name": "Digital Monster Ver. 4",
+   "kind": "Virtual pet",
+   "detail": "Bandai \u00b7 Japanese",
+   "core": "E0C6200",
+   "brick": "DigimonV4J.json",
+   "face": "DigimonV4J.svg",
+   "thumb": "DigimonV4J.webp",
+   "size": [
+    4027,
+    2691
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "DigimonV4J.bin"
+    }
+   ],
+   "pad": {
+    "up": "btnTop",
+    "left": "btnTop",
+    "a": "btnCenter",
+    "right": "btnCenter",
+    "b": "btnBottom",
+    "down": "btnBottom"
+   }
+  },
+  {
+   "id": "AlienFever",
+   "name": "Alien Fever",
+   "kind": "LCD game",
+   "detail": "E0C6200",
+   "core": "E0C6200",
+   "brick": "AlienFever.json",
+   "face": "AlienFever.svg",
+   "thumb": "AlienFever.webp",
+   "size": [
+    1842,
+    2411
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "AlienFever.bin",
+     "size": 12288,
+     "sha1": "7927e198f8989861ba057150e59d1f4ad403c1d2",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "a": "btnHandle",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "RadioShackStackChallenge",
+   "name": "Stack Challenge",
+   "kind": "LCD game",
+   "detail": "Radio Shack \u00b7 E0C6200",
+   "core": "E0C6200",
+   "brick": "RadioShackStackChallenge.json",
+   "face": "RadioShackStackChallenge.svg",
+   "thumb": "RadioShackStackChallenge.webp",
+   "size": [
+    4282,
+    8406
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "RadioShackStackChallenge.bin",
+     "size": 12288,
+     "sha1": "52b80d70aa7fc3b6323799403b3aba0e3d957f3b",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "down": "btnDown",
+    "up": "btnRotate",
+    "a": "btnRotate",
+    "b": "btnRight",
+    "start": "btnPause",
+    "select": "btnSound"
+   }
+  },
+  {
+   "id": "nikko",
+   "name": "Nikko",
+   "kind": "LCD game",
+   "detail": "E0C6200",
+   "core": "E0C6200",
+   "brick": "nikko.json",
+   "face": "nikko.svg",
+   "thumb": "nikko.webp",
+   "size": [
+    707,
+    1041
+   ],
+   "roms": [
+    {
+     "role": "rom",
+     "file": "nikko.bin",
+     "size": 12288,
+     "sha1": "22f6a2ede6259e76f1c8b9b50171c54d8a7de502",
+     "upstream": true
+    }
+   ],
+   "pad": {
+    "left": "btnLeft",
+    "right": "btnRight",
+    "a": "btnCenter",
     "b": "btnRight"
    }
   }
